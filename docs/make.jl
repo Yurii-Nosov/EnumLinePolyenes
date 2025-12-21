@@ -1,0 +1,16 @@
+using Documenter, WorldDynamics
+
+makedocs(sitename="EnumLinePolyenes.jl",
+    modules=[EnumLinePolyenes],
+    pages=[
+        "Home" => "index.md",
+        "WorldDynamics tutorial" => "tutorial.md",
+        "World 2 equations, variables, and parameters" => "world2.md",
+        "World 3 equations, variables, and parameters" => "world3.md",
+        "Source code documentation" => "source.md",
+    ]
+)
+
+deploydocs(
+    repo = "github.com/worlddynamics/EnumLinePolyenes.jl.git",
+)

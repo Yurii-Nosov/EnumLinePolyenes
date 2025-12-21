@@ -1,16 +1,17 @@
-using Documenter, WorldDynamics
+using Documenter, EnumLinePolyenes
 
 makedocs(sitename="EnumLinePolyenes.jl",
     modules=[EnumLinePolyenes],
     pages=[
         "Home" => "index.md",
-        "WorldDynamics tutorial" => "tutorial.md",
-        "World 2 equations, variables, and parameters" => "world2.md",
-        "World 3 equations, variables, and parameters" => "world3.md",
+        "WorldDynamics tutorial" => "Generation.md",
+        "World 2 equations, variables, and parameters" => "Enumeration.md",
+        "World 3 equations, variables, and parameters" => "SymmetryGroups.md",
+        "World 3 equations, variables, and parameters" => "Overlap.md",
         "Source code documentation" => "source.md",
     ]
 )
 
 deploydocs(
-    repo = "github.com/worlddynamics/EnumLinePolyenes.jl.git",
+    repo = "github.com/Yurii-Nosov/EnumLinePolyenes.jl.git",
 )

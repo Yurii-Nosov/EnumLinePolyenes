@@ -4,10 +4,10 @@ makedocs(sitename="EnumLinePolyenes.jl",
     modules=[EnumLinePolyenes],
     pages=[
         "Home" => "index.md",
-        "WorldDynamics tutorial" => "Generation.md",
-        "World 2 equations, variables, and parameters" => "Enumeration.md",
-        "World 3 equations, variables, and parameters" => "SymmetryGroups.md",
-        "World 3 equations, variables, and parameters" => "Overlap.md",
+        "Generation of binary codes of molecular graphs" => "Generation.md",
+        "Number of non-isomorphic graphs of isomers and conformers" => "Enumeration.md",
+        "Distribution of graphs by symmetry groups" => "SymmetryGroups.md",
+        "Molecular graphs with vertex overlays" => "Overlap.md",
         "Source code documentation" => "source.md",
     ]
 )

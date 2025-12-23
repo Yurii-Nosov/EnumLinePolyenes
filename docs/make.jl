@@ -7,6 +7,7 @@ bib = CitationBibliography(joinpath(
     style=:numeric
 )
 
+
 makedocs(sitename="EnumLinePolyenes.jl",
     modules=[EnumLinePolyenes],
     format=Documenter.HTML(),

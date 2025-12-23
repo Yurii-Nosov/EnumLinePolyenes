@@ -1,2 +1,9 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# Явно задаём LF для YAML-файлов
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Для Windows-специфичных файлов можно оставить CRLF
+*.bat text eol=crlf
+*.ps1 text eol=crlf

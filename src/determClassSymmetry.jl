@@ -5,27 +5,35 @@ using ..AllSmallParts
 export symmetryClassFromZE, symmetryClassFromBcd,calcClassSymFromZE, calcClassSymFromBcd 
 
 function  symmetryClassFromBcdOl(bcd)
-    clsSym = 3
+    nsym = 3
     revBcd = reverse(bcd)
     if bcd == revBcd
-        clsSym = 1
+        nsym = 1
     elseif bcd == invert(revBcd)    
-        clsSym = 2                  
+        nsym = 2                  
     else
-        clsSym = 3
+        nsym = 3
     end            
-    return clsSym
+    return nsym
 end
 
+"""
+    symmetryClassFromBcd(bcd)
+   Determines the symmetry group of a molecular graph based on its vertex code `bcd`.
+   Returns the code of the symmetry group nsym::Int64, which can have one of three values:
+   `nsym = 1` - the graph has mirror symmetry;
+   `nsym = 2` - the graph has rotational symmetry;
+   `nsym = 3` - the graph is not symmetric.
+"""
 function  symmetryClassFromBcd(bcd)
-    clsSym = 3
+    nsym = 3
     a1 = bcd[1]; af = bcd[end]
     if a1 ==  0 &&  af == 0
         revBcd = reverse(bcd)
         if bcd < revBcd
-            clsSym = 3
+            nsym = 3
         elseif bcd == revBcd
-            clsSym = 1   
+            nsym = 1   
         elseif bcd > revBcd
             x = 1
         end    
@@ -33,30 +41,29 @@ function  symmetryClassFromBcd(bcd)
         revBcd = reverse(bcd)
         invRevBcd = invert(revBcd)
         if bcd < invRevBcd
-            clsSym = 3
+            nsym = 3
         elseif bcd == invRevBcd
-            clsSym = 2    
+            nsym = 2    
         elseif bcd > invRevBcd
             x = 1
         end
     end        
-    return clsSym
+    return nsym
 end
 
 
-function symmetryClassFromZE(bcd)
-    nsr = div((length(bcd)-1),2) + 1
-    if bcd != reverse(bcd)
-        cls = 3
+function symmetryClassFromZE(ZEcode)
+    nsr = div((length(ZEcode)-1),2) + 1
+    if ZEcode != reverse(ZEcode)
+        nsym = 3
     else 
-        if bcd[nsr] == 1
-            cls = 1
-        elseif bcd[nsr] == 0
-            cls = 2 
-            
+        if ZEcode[nsr] == 1
+            nsym = 1
+        elseif ZEcode[nsr] == 0
+            nsym = 2            
         end        
     end
-    return cls
+    return nsym
 end
 
 function calcClassSymFromZE(n::Int64) 
@@ -69,16 +76,16 @@ function calcClassSymFromZE(n::Int64)
         bcd = IntgDig(k-1,m)  # n изменяется фактически от 0 до pmo - 1
         bcdMin = makeMinFromZE(bcd)        
         if bcdMin == bcd
-            sym = symmetryClassFromZE(bcd)       
+            nsym = symmetryClassFromZE(bcd)       
             cls = graphTypeFromZE(bcd)
             if cls == 1                
-                nSymIso[sym+1] += 1
+                nSymIso[nsym+1] += 1
                 nSymIso[5] += 1
             elseif  cls == 2                
-                nSymConTrnIso[sym+1] += 1
+                nSymConTrnIso[nsym+1] += 1
                 nSymConTrnIso[5] += 1
             elseif  cls == 3
-                nSymConOthIso[sym+1] += 1
+                nSymConOthIso[nsym+1] += 1
                 nSymConOthIso[5] += 1                            
             end                        
         end
@@ -98,16 +105,16 @@ function calcClassSymFromBcd(n::Int64)
         bcd = IntgDig(k-1,p)  # n изменяется фактически от 0 до pmo - 1
         bcdMin = makeMinFromBcd(bcd)        
         if bcdMin == bcd
-            sym = symmetryClassFromBcd(bcd)  
+            nsym = symmetryClassFromBcd(bcd)  
             cls = graphTypeFromBcd(bcd)
             if cls == 1                
-                nSymIso[sym+1] += 1
+                nSymIso[nsym+1] += 1
                 nSymIso[5] += 1
             elseif  cls == 2                
-                nSymConTrnIso[sym+1] += 1
+                nSymConTrnIso[nsym+1] += 1
                 nSymConTrnIso[5] += 1
             elseif  cls == 3
-                nSymConOthIso[sym+1] += 1
+                nSymConOthIso[nsym+1] += 1
                 nSymConOthIso[5] += 1                            
             end                        
         end

@@ -5,8 +5,8 @@ export fromCodeZEtoBCode, inZEtoBcd,graphTypeFromZE, graphTypeFromBcd
 
 
 """
-    zam(x::Int64)
-Return 1 if x = 0 and return 0 if x = 1.    
+    zam(`x::Int64`)
+Return `1` if `x = 0` and return `0` if `x = 1`.    
 """
 function  zam(x::Int64)
     if x == 1
@@ -18,7 +18,7 @@ end
  
 
 """
-    invert(bcd)
+    invert(`bcd`)
 Return the inverted vector `invBcd` obtained from the original vector `bcd` by replacing 
 all zeros with ones and replacing all ones with zeros.
 """  
@@ -29,7 +29,7 @@ end
 
 
 """
-    IntgDig(n::Int64,p::Int64)
+    IntgDig(`n::Int64`,`p::Int64`)
 Return a binary number from the decimal number `n` as a list of length `p`.
 The calculation uses the half division method.    
 """
@@ -56,7 +56,7 @@ function IntgDig(n::Int64, p::Int64)
 end 
 
 """
-    func(x,y)
+    func(`x`, `y`)
 """
 function func(x,y)
     #res = 0
@@ -69,8 +69,8 @@ function func(x,y)
 end 
 
 """
-    makeMinFromBcd(bcd)
-Return the canonical vertex code `canBcd`` as the lexicographically smallest of the 
+    makeMinFromBcd(`bcd`)
+Return the canonical vertex code `canBcd` as the lexicographically smallest of the 
 source code `bcd`, the reversed code `revBcd`, and the code `invRevBcd`, obtained by
 reversing and inverting.
 """
@@ -101,9 +101,9 @@ function  makeMinFromBcd(bcd)
 end
 
 """
-    makeMinFromZE(ZEcode)
-Return the canonical edge code `canZEcode`` as the lexicographically smallest
-of the original `ZEcode`` and reversed `revZEcode`` codes.
+    makeMinFromZE(`ZEcode`)
+Return the canonical edge code `canZEcode` as the lexicographically smallest
+of the original `ZEcode`` and reversed `revZEcode` codes.
 """
 function  makeMinFromZE(ZEcode)
     canZEcode = Vector{Int64}()
@@ -120,10 +120,10 @@ end
 
 
 """
-    checkMinFromZE(bcd)
-Return "true" if the edge code `ZEcode`` is canonical and return "false" if the code 
+    checkMinFromZE(`bcd`)
+Return "true" if the edge code `ZEcode` is canonical and return "false" if the code 
 is not canonical. An edge code is canonical if it is lexicographically 
-the smallest of the original `ZEcode`` and reversed `revZEcode`` codes.
+the smallest of the original `ZEcode` and reversed `revZEcode` codes.
 """
 function  checkMinFromZE(ZEcode)
     #res = false
@@ -139,8 +139,8 @@ function  checkMinFromZE(ZEcode)
 end
 
 """
-    fromCodeZEtoBCode(ZEcode)
-Return the vertex code from the edge code.
+    fromCodeZEtoBCode(`ZEcode`)
+Return the vertex code `BCode` from the edge code `ZEcode`.
 """
 function fromCodeZEtoBCode(ZEcode)
     n = length(ZEcode)
@@ -161,8 +161,8 @@ end
 
 
 """
-    inZEtoBcd(ZEcode)
-Return the vertex code from the edge code.
+    inZEtoBcd(`ZEcode`)
+Return the vertex code `BCode` from the edge code `ZEcode`.
 """
 function inZEtoBcd(ZEcode)
     n = length(ZEcode)
@@ -183,8 +183,8 @@ end
 
 
 """
-    graphTypeFromZE(ZEcode)
-    Return the graph class by its edge code.
+    graphTypeFromZE(`ZEcode`)
+    Return the graph class `cls` by its edge code `ZEcode`.
 """
 function graphTypeFromZE(ZEcode)
     nmc = length(ZEcode)
@@ -205,8 +205,8 @@ function graphTypeFromZE(ZEcode)
 end  
 
 """
-    graphTypeFromZE(Bcode)
-    Return the graph class by its vertex code
+    graphTypeFromZE(`Bcode`)
+    Return the graph class `cls` by its vertex code `Bcode`.
 """
 function graphTypeFromBcd(Bcode)
     n =  length(Bcode)
@@ -228,4 +228,4 @@ function graphTypeFromBcd(Bcode)
     return cls
 end 
 
-end  ## end of vodule
+end  ## end of module

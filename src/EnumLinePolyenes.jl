@@ -94,34 +94,4 @@ export calcAngles, calcAngles2,scheckValues,calcLengthCC,calcLengthCH,
      analyzLengthCC,analyzLengthHydCC,analyzLengthCH, fromLstAnglesToBCode,
     fromBCodeToLstAngles, fromLstAnglesToBCode
 
-#export zam, invert, IntgDig, zamena,func, makeMinFromZE, makeMinFromBcd,checkMinFromZE
-#export fromCodeZEtoBCode, inZEtoBcd,graphTypeFromZE, graphTypeFromBcd
-
-#export genIsoCodeFromZE, genConTrnIsoCodeFromZE, genConOtrIsoCodeFromZE 
-#export genIsoCodeFromBcd, genConTrnIsoCodeFromBcd, genConOtrIsoCodeFromBcd
-#export genCodePartCOIfromBcd, genCodePartCOIfromZE
-#export genCodeCis4pFromZE, genCodeCis3fromZE, genCodeNonCis3fromZE
-
-#export makeAllCodeFromZE, makeAllCodeFromBcd, makeConfOtherIsoFromZE
-#export countCodeFromZE, countCodeFromBcd,countListCodeFromZE, countListCodeFromBcd
-#export countConfOtherIsoFromZE
-
-#export makePolyenPathCC, makePolyenPathHH
-# showGraph2, showGraphHyd, showGraph2Wait
-#export outputAllGraphsCC, outputAllGraphsHH
-
-#export symmetryClassFromZE, symmetryClassFromBcd,calcClassSymFromZE, calcClassSymFromBcd 
-
-#export npov, lngDistr, selectIntersect, showAllGraphsOverlap, showSelectGraphsOverlap
-#export calcDistrAllGraphsOverlap, outputDistrGraphsOverlap
-
-#export makeMolGraphAll,makeMolGraphClass,makeMolGraphCOI,checkYeh2,checkYeh,molGraphYeh
-#export intersect, calcInts, enumerInters
- 
-#export calcAngles, calcAngles2,scheckAngles,calcLengthCC,calcLengthCH,scheckLength
-#export analyzLengthCC,analyzLengthHydCC,analyzLengthCH, fromLstAnglesToBCode
-#export fromBCodeToLstAngles, fromLstAnglesToBCode
-
-
-
 end

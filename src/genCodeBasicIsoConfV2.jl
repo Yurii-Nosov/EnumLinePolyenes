@@ -26,13 +26,13 @@ export makeAllCodeFromZEv2,genIsoCodeFromZEv2,genConTrnIsoCodeFromZEv2,genConOtr
        graphs of conformers of other isomers.
 """
 function makeAllCodeFromZEv2(n::Int64)
-    m = n - 3   #  m  - количество используемых ребер
+    m = n - 3      #  m = is the number of edges used
     pmo = 2^m
     setBcdIso = Set()
     setBcdConTI = Set()
     setBcdConBad = Set()      
     for k = 1:pmo  
-        bcd = IntgDig(k-1,m)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,m)       #  edge code is generated        
         res = checkMinFromZE(bcd)        
         if res == true
             hvct = fromCodeZEtoBCode(bcd)           
@@ -63,11 +63,11 @@ end
     `lstBcdIso::Vector{Vector{Int64}}`: A vector containing the vertex codes for molecular graphs of isomers. 
 """
 function genIsoCodeFromZEv2(n::Int64)
-    m = n - 3   #  m  - количество используемых ребер
+    m = n - 3   #  m = is the number of edges used
     pmo = 2^m
     setBcdIso = Set()          
     for k = 1:pmo  
-        bcd = IntgDig(k-1,m)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,m)  #   edge code is generated        
         res = checkMinFromZE(bcd)        
         if res == true
             hvct = fromCodeZEtoBCode(bcd)           
@@ -95,11 +95,11 @@ end
     Each code is a vector of integers (Int64), where each element is either 0 or 1.
 """
 function genConTrnIsoCodeFromZEv2(n::Int64)
-    m = n - 3   #  m  - количество используемых ребер
+    m = n - 3         # m = is the number of edges used
     pmo = 2^m
     setBcdConTranIso = Set()          
     for k = 1:pmo  
-        bcd = IntgDig(k-1,m)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,m)  #   edge code is generated        
         res = checkMinFromZE(bcd)        
         if res == true
             hvct = fromCodeZEtoBCode(bcd)           
@@ -128,11 +128,11 @@ end
     Each code is a vector of integers (Int64), where each element is either 0 or 1.
 """
 function genConOtrIsoCodeFromZEv2(n::Int64)
-    m = n - 3   #  m  - количество используемых ребер
+    m = n - 3   #  m = is the number of edges used
     pmo = 2^m
     setBcdConOtrIso = Set()          
     for k = 1:pmo  
-        bcd = IntgDig(k-1,m)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,m)  #  edge code is generated        
         res = checkMinFromZE(bcd)        
         if res == true
             hvct = fromCodeZEtoBCode(bcd)           

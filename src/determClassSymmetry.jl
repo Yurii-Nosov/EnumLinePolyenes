@@ -4,27 +4,16 @@ using ..AllSmallParts
 
 export symmetryClassFromZE, symmetryClassFromBcd,calcClassSymFromZE, calcClassSymFromBcd 
 
-function  symmetryClassFromBcdOl(bcd)
-    nsym = 3
-    revBcd = reverse(bcd)
-    if bcd == revBcd
-        nsym = 1
-    elseif bcd == invert(revBcd)    
-        nsym = 2                  
-    else
-        nsym = 3
-    end            
-    return nsym
-end
 
 """
     symmetryClassFromBcd(bcd::Vector{Int64})
+
    Determines the symmetry group of a molecular graph based on its vertex code `bcd`.
 # Returns 
 - nsym::Int64: the symmetry group code, which can have one of three values:
-- `nsym = 1` if the graph has mirror symmetry (symmetry group $C_{2h}$);
-- `nsym = 2` if the graph has rotational symmetry (symmetry group $C_{2v}$);
-- `nsym = 3` if the graph is not symmetric (symmetry group $C_S$).
+- `nsym = 1` if the graph has mirror symmetry (symmetry group \$C_{2h}\$);
+- `nsym = 2` if the graph has rotational symmetry (symmetry group \$C_{2v}\$);
+- `nsym = 3` if the graph is not symmetric (symmetry group \$C_S\$).
 """
 function  symmetryClassFromBcd(bcd)
     nsym = 3
@@ -54,12 +43,13 @@ end
 
 """
     symmetryClassFromZE(ZEcode::Vector{Int64})
+
    Determines the symmetry group of a molecular graph based on its edge code `ZEcode`.
 # Returns 
  `nsym::Int64`: the symmetry group code, which can have one of three values:
-- `nsym = 1` if the graph has mirror symmetry (symmetry group $C_{2h}$);
-- `nsym = 2` if the graph has rotational symmetry (symmetry group $C_{2v}$);
-- `nsym = 3` if the graph is not symmetric (symmetry group $C_S$).
+- `nsym = 1` if the graph has mirror symmetry (symmetry group \$C_{2h}\$);
+- `nsym = 2` if the graph has rotational symmetry (symmetry group \$C_{2v}\$);
+- `nsym = 3` if the graph is not symmetric (symmetry group \$C_S\$).
 """
 function symmetryClassFromZE(ZEcode)
     nsr = div((length(ZEcode)-1),2) + 1

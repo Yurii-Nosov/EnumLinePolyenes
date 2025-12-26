@@ -90,10 +90,11 @@ end
     Generates vertex codes for molecular graphs of order `n` for all non-isomorphic isomers.
 
     This is done by sequentially generating edge codes, from which vertex codes are obtained 
-    using the `fromCodeZEtoBCode` function. Edge codes for non-isomorphic graphs are selected using 
-    the `makeMinFromZE` function.
+    using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
+    the [`makeMinFromZE`](@ref) function.
     # Returns
     `lstBcdIso::Vector{Vector{Int64}}`: A vector containing the vertex codes for molecular graphs of isomers. 
+    Each code is a vector of integers (Int64), where each element is either `0` or `1`.
 """
 function genIsoCodeFromZE(n::Int64)
     m = n - 3   #  m  - количество используемых ребер
@@ -123,12 +124,12 @@ end
     of  trans-isomer.
 
     This is done by sequentially generating edge codes, from which vertex codes are obtained 
-    using the `fromCodeZEtoBCode` function. Edge codes for non-isomorphic graphs are selected using 
-    the `makeMinFromZE` function.
+    using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
+    the [`makeMinFromZE`](@ref) function.
     # Returns
     `lstBcdConTranIso::Vector{Vector{Int64}}`: A vector containing vertex codes for molecular graphs
     of trans-isomer conformers. 
-    Each code is a vector of integers (Int64), where each element is either 0 or 1.
+    Each code is a vector of integers (Int64), where each element is either `0` or `1`.
 """
 function genConTrnIsoCodeFromZE(n::Int64)
     m = n - 3   #  m  - количество используемых ребер
@@ -157,12 +158,12 @@ end
     of other isomers.
 
     This is done by sequentially generating edge codes, from which vertex codes are obtained 
-    using the `fromCodeZEtoBCode` function. Edge codes for non-isomorphic graphs are selected using 
-    the `makeMinFromZE` function.
+    using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
+    the [`makeMinFromZE`](@ref) function.
     # Returns
     `lstBcdConOtrIso::Vector{Vector{Int64}}`: A vector containing the vertex codes for molecular
     graphs of conformers of other isomers. 
-    Each code is a vector of integers (Int64), where each element is either 0 or 1.
+    Each code is a vector of integers (Int64), where each element is either `0` or `1`.
 """    
 function genConOtrIsoCodeFromZE(n::Int64)
     m = n - 3   #  m  - количество используемых ребер
@@ -196,7 +197,7 @@ end
    the [`graphTypeFromBcd`](@ref) function.
    # Returns
    `lstBcdIso::Vector{Vector{Int64}}`: A vector containing the vertex codes of the graphs of isomers. 
-   Each code is a vector of integers (Int64), where each element is either 0 or 1. 
+   Each code is a vector of integers (Int64), where each element is either `0` or `1`. 
 """    
 function genIsoCodeFromBcd(n::Int64)
     p = n - 2   #  m  - количество используемых ребер
@@ -227,7 +228,7 @@ end
     the [`graphTypeFromBcd`](@ref) function.
     # Returns
     `lstBcdConTranIso::Vector{Vector{Int64}}`: A vector containing vertex codes for graphs of conformers 
-    of trans isomers. Each code is a vector of integers (Int64), where each element is either 0 or 1.
+    of trans isomers. Each code is a vector of integers (Int64), where each element is either `0` or `1`.
 """
 function genConTrnIsoCodeFromBcd(n::Int64)
     p = n - 2   #  m  - количество используемых ребер
@@ -252,12 +253,12 @@ end
     Generates vertex codes of all non-isomorphic molecular graphs of order `n` of conformers of other isomers.
 
     This is done by sequentially generating edge codes, from which vertex codes are obtained 
-    using the `fromCodeZEtoBCode` function. Edge codes for non-isomorphic graphs are selected using 
-    the `checkMinFromZE` function.
+    using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
+    the [`checkMinFromZE`](@ref) function.
     # Returns
     `lstBcdConOtrIso::Vector{Vector{Int64}}`: A vector containing the vertex codes for molecular
      graphs of conformers of other isomers. 
-    Each code is a vector of integers (Int64), where each element is either 0 or 1.
+    Each code is a vector of integers (Int64), where each element is either `0` or `1`.
 """
 function genConOtrIsoCodeFromBcd(n::Int64)
     p = n - 2   #  m  - количество используемых ребер

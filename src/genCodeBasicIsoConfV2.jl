@@ -14,14 +14,16 @@ export makeAllCodeFromZEv2,genIsoCodeFromZEv2,genConTrnIsoCodeFromZEv2,genConOtr
 """
     makeAllCodeFromZEv2(n::Int64)
 
-Generates vertex codes for molecular graphs of order `n` for all non-isomorphic isomers.
+Creates a complete lists of vertex codes for all non-isomorphic molecular graphs of 
+order `n` for isomers, conformers of trans isomers, and conformers of other isomers.
 
 This is done by sequentially generating edge codes, from which vertex codes are obtained 
 using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
 the [`checkMinFromZE`](@ref) function.
+
 # Returns
   - `lstBcdIso::Vector{Vector{Int64}}`: A vector containing the vertex codes for molecular graphs of isomers;
-    `lstBcdConTranIso::Vector{Vector{Int64}}`: A vector containing vertex codes for molecular graphs
+  -  `lstBcdConTranIso::Vector{Vector{Int64}}`: A vector containing vertex codes for molecular graphs
     of trans-isomer conformers;
   - `lstBcdConOtrIso::Vector{Vector{Int64}}`: A vector containing the vertex codes for molecular
     graphs of conformers of other isomers.
@@ -58,14 +60,15 @@ end
 """
     genIsoCodeFromZEv2(n::Int64)
 
-Generates vertex codes for molecular graphs of order `n` for all non-isomorphic isomers.
+Creates a complete list of vertex codes for all non-isomorphic molecular graphs of 
+order `n` for isomers.
 
 This is done by sequentially generating edge codes, from which vertex codes are obtained 
 using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
 the [`checkMinFromZE`](@ref) function.
-# Returns
-  `lstBcdIso::Vector{Vector{Int64}}`: A vector containing the vertex codes for molecular graphs of isomers.
-  Each code is a vector of integers (Int64), where each element is either `0` or `1`. 
+
+Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` 
+in which every element is either `0` or `1`.
 """
 function genIsoCodeFromZEv2(n::Int64)
     m = n - 3   #  m = is the number of edges used
@@ -89,16 +92,15 @@ end
 """
     genConTrnIsoCodeFromZEv2(n::Int64)
 
-Generates vertex codes for molecular graphs of order n for all non-isomorphic conformers
-of  trans-isomer.
+Creates a complete list of vertex codes for all non-isomorphic molecular graphs of order
+`n` for conformers of trans isomers.
 
 This is done by sequentially generating edge codes, from which vertex codes are obtained 
 using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
 the [`checkMinFromZE`](@ref) function.
-# Returns
-  `lstBcdConTranIso::Vector{Vector{Int64}}`: A vector containing vertex codes for molecular graphs
-  of trans-isomer conformers. 
-  Each code is a vector of integers (Int64), where each element is either `0` or `1`.
+
+Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` 
+in which every element is either `0` or `1`.
 """
 function genConTrnIsoCodeFromZEv2(n::Int64)
     m = n - 3         # m = is the number of edges used
@@ -123,16 +125,15 @@ end
 """
     genConOtrIsoCodeFromZEv2(n::Int64)
 
-Generates vertex codes for molecular graphs of order n for all non-isomorphic conformers
-of other isomers.
+Creates a complete list  of vertex codes for all non-isomorphic molecular graphs of 
+order `n` for conformers of other isomers.
 
 This is done by sequentially generating edge codes, from which vertex codes are obtained 
 using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
 the [`checkMinFromZE`](@ref) function.
-# Returns
-  `lstBcdConOtrIso::Vector{Vector{Int64}}`: A vector containing the vertex codes for molecular
-  graphs of conformers of other isomers. 
-  Each code is a vector of integers (Int64), where each element is either `0` or `1`.
+ 
+Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` 
+in which every element is either `0` or `1`.
 """
 function genConOtrIsoCodeFromZEv2(n::Int64)
     m = n - 3   #  m = is the number of edges used

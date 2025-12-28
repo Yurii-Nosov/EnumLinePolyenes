@@ -65,6 +65,28 @@ function symmetryClassFromZE(ZEcode)
     return nsym
 end
 
+
+"""
+    calcClassSymFromZE(n::Int64)
+
+Calculates the distribution of the number of molecular graphs of isomers, conformers of 
+trans-isomers, and conformers of other isomers by their symmetry groups.  
+Edge graph codes are used.
+
+# Returns
+- `nSymIso::Vector{Int64}`: distribution vector of the number of molecular graphs of 
+isomers by symmetry groups;
+- `nSymConTrnIso::Vector{Int64}`: distribution vector of the number of molecular graphs
+of trans-isomer conformers by symmetry groups;
+- `nSymConOthIso::Vector{Int64}`: distribution vector of the number of molecular graphs
+of other isomer conformers by symmetry groups.
+
+!!! note
+All of the above vectors have the same structure. The vector length is 5, the first 
+element contains the graph order `n`, the second, third, and fourth elements contain 
+the number of graphs with symmetry group \$C_{2h}\$, \$C_{2v}\$, \$C_S\$, respectively.
+The fifth element contains the total number of graphs.
+"""
 function calcClassSymFromZE(n::Int64) 
     m = n - 3  
     pmo = 2^m
@@ -92,8 +114,29 @@ function calcClassSymFromZE(n::Int64)
     return  nSymIso, nSymConTrnIso, nSymConOthIso 
 end  
 
-    
 
+
+"""
+    calcClassSymFromBcd(n::Int64)
+
+Calculates the distribution of the number of molecular graphs of isomers, conformers of 
+trans-isomers, and conformers of other isomers by their symmetry groups.  
+Vertex graph codes are used. 
+
+# Returns
+- `nSymIso::Vector{Int64}`: distribution vector of the number of molecular graphs of 
+isomers by symmetry groups;
+- `nSymConTrnIso::Vector{Int64}`: distribution vector of the number of molecular graphs
+of trans-isomer conformers by symmetry groups;
+- `nSymConOthIso::Vector{Int64}`: distribution vector of the number of molecular graphs
+of other isomer conformers by symmetry groups.
+
+!!! note
+All of the above vectors have the same structure. The vector length is 5, the first 
+element contains the graph order `n`, the second, third, and fourth elements contain 
+the number of graphs with symmetry group \$C_{2h}\$, \$C_{2v}\$, \$C_S\$, respectively.
+The fifth element contains the total number of graphs.
+"""
 function calcClassSymFromBcd(n::Int64)
     p = n - 2  
     pmo = 2^(p-1)

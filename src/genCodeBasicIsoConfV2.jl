@@ -12,14 +12,21 @@ export makeAllCodeFromZEv2,genIsoCodeFromZEv2,genConTrnIsoCodeFromZEv2,genConOtr
 ##   Unlike the first version, here the `checkMinFromZE` function is used to select non-isomorphic graphs.
 
 """
+All functions of the `GenCodeBasicIsoConfV2`` module use:
+- the `IntgDig`](@ref) function to create the edge code of a molecular graph;
+- the [`checkMinFromZE`](@ref) function to check the code for canonicity based on the edge code;
+- the [`graphTypeFromZE`](@ref) function to determine the graph class based on its edge code;
+- the [`fromCodeZEtoBCode`](@ref) function to obtain the vertex code of a graph from its edge code.
+"""    
+
+"""
     makeAllCodeFromZEv2(n::Int64)
 
 Creates a complete lists of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for isomers, conformers of trans isomers, and conformers of other isomers.
 
-This is done by sequentially generating edge codes, from which vertex codes are obtained 
-using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
-the [`checkMinFromZE`](@ref) function.
+See also [`IntgDig`](@ref), [`checkMinFromZE`](@ref), [`fromCodeZEtoBCode`](@ref), 
+[`graphTypeFromZE`](@ref).
 
 # Returns
   - `lstBcdIso::Vector{Vector{Int64}}`: A vector containing the vertex codes for molecular graphs of isomers;
@@ -63,9 +70,8 @@ end
 Creates a complete list of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for isomers.
 
-This is done by sequentially generating edge codes, from which vertex codes are obtained 
-using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
-the [`checkMinFromZE`](@ref) function.
+See also [`IntgDig`](@ref), [`checkMinFromZE`](@ref), [`fromCodeZEtoBCode`](@ref), 
+[`graphTypeFromZE`](@ref).
 
 Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` 
 in which every element is either `0` or `1`.
@@ -95,9 +101,8 @@ end
 Creates a complete list of vertex codes for all non-isomorphic molecular graphs of order
 `n` for conformers of trans isomers.
 
-This is done by sequentially generating edge codes, from which vertex codes are obtained 
-using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
-the [`checkMinFromZE`](@ref) function.
+See also [`IntgDig`](@ref), [`checkMinFromZE`](@ref), [`fromCodeZEtoBCode`](@ref), 
+[`graphTypeFromZE`](@ref).
 
 Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` 
 in which every element is either `0` or `1`.
@@ -128,9 +133,8 @@ end
 Creates a complete list  of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for conformers of other isomers.
 
-This is done by sequentially generating edge codes, from which vertex codes are obtained 
-using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
-the [`checkMinFromZE`](@ref) function.
+See also [`IntgDig`](@ref), [`checkMinFromZE`](@ref), [`fromCodeZEtoBCode`](@ref), 
+[`graphTypeFromZE`](@ref).
  
 Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` 
 in which every element is either `0` or `1`.

@@ -76,8 +76,40 @@ function geometryPCC(ist, numVer,hvec, n::Int64)
 end    
 
 
-
 ## generation volecular graphs wih hydrogen atoms *************************************
+
+
+function makePolyenPathHH(hvec)
+    global  XG, YG, XH,YH
+    global L,LH, dY, dX, dYH, dXH 	
+    L = 1.44; LH = 1.08
+    dY = L*0.5; dX = L*sqrt(3)/2
+    dYH = LH*0.5; dXH = LH*sqrt(3)/2
+    sedge = Set([[1, 2]])
+    oldVer = 2
+    lenhv = length(hvec)
+    n = lenhv + 2
+    edgHydro = Set([[1, 1], [1,2]])
+    numHid = 2; newver = 0    
+    XG, YG, XH,YH = initCoordHH(hvec)    
+    for i in 1:lenhv  #   i изменяется от 1 до lenhv        
+        newver = oldVer + 1
+        numHid += 1
+        rebroCC = [oldVer,newver]
+        rebroCH = [oldVer,numHid]
+        push!(sedge, rebroCC)
+        push!(edgHydro, rebroCH)        
+        geometryPHH(i, oldVer,hvec, n)
+        oldVer = newver
+    end
+    geometryFin(newver)
+    push!(edgHydro, [newver, newver + 1])
+    push!(edgHydro, [newver, newver + 2])
+    edgHydros = sort(collect(edgHydro))
+    sedges = sort(collect(sedge))
+    return sedges, edgHydros, XG, YG, XH,YH
+end  
+
 
 
 function initCoordHH(hvec)
@@ -177,39 +209,6 @@ function geometryFin(numVer::Int64)
     push!(XH, xh1); push!(YH, yh1)
     push!(XH, xh2); push!(YH, yh2)
 end    
-
-
-
-function makePolyenPathHH(hvec)
-    global  XG, YG, XH,YH
-    global L,LH, dY, dX, dYH, dXH 	
-    L = 1.44; LH = 1.08
-    dY = L*0.5; dX = L*sqrt(3)/2
-    dYH = LH*0.5; dXH = LH*sqrt(3)/2
-    sedge = Set([[1, 2]])
-    oldVer = 2
-    lenhv = length(hvec)
-    n = lenhv + 2
-    edgHydro = Set([[1, 1], [1,2]])
-    numHid = 2; newver = 0    
-    XG, YG, XH,YH = initCoordHH(hvec)    
-    for i in 1:lenhv  #   i изменяется от 1 до lenhv        
-        newver = oldVer + 1
-        numHid += 1
-        rebroCC = [oldVer,newver]
-        rebroCH = [oldVer,numHid]
-        push!(sedge, rebroCC)
-        push!(edgHydro, rebroCH)        
-        geometryPHH(i, oldVer,hvec, n)
-        oldVer = newver
-    end
-    geometryFin(newver)
-    push!(edgHydro, [newver, newver + 1])
-    push!(edgHydro, [newver, newver + 2])
-    edgHydros = sort(collect(edgHydro))
-    sedges = sort(collect(sedge))
-    return sedges, edgHydros, XG, YG, XH,YH
-end  
 
 
 end

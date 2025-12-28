@@ -9,21 +9,25 @@ export genIsoCodeFromBcd, genConTrnIsoCodeFromBcd, genConOtrIsoCodeFromBcd
 #####  СОЗДАНИЕ ВСЕХ неизоморфных  РМВП-графов всех 3-х классов по кортежам свойств  длиной  n
 #####    использует функцию IntgDig, makeMinKirby, checkMolCodeZE
 
-# Functions with source edge code
+# Functions with source edge code =======================
 
-"""
+#=
 All functions with source edge code use:
 - the `IntgDig`](@ref) function to generate the edge code of the molecular graph;
 - the [`makeMinFromZE`](@ref) function to check the code for canonicity based on the edge code;
 - the [`graphTypeFromZE`](@ref) function to determine the graph class based on its edge code;
 - the [`fromCodeZEtoBCode`](@ref) function to obtain the vertex code of a graph from its edge code.
-"""
+=#
 
 """
     makeAllCodeFromZE(n::Int64)
 
 Creates a complete lists of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for isomers, conformers of trans isomers, and conformers of other isomers.
+
+See also [`IntgDig`](@ref), [`makeMinFromZE`](@ref),  [`graphTypeFromZE`](@ref),
+[`fromCodeZEtoBCode`](@ref).
+
 # Returns
   - `lstBcdIso::Vector{Vector{Int64}}`: A vector containing the vertex codes for molecular 
     graphs of isomers;
@@ -36,13 +40,13 @@ In all of the above vectors, each code is an Int64 integer vector whose elements
 are either `0` or `1`.
 """
 function makeAllCodeFromZE(n::Int64)
-    m = n - 3   #  m  - количество используемых ребер
+    m = n - 3   #  m - number of edges used
     pmo = 2^m
     setBcdIso = Set()
     setBcdConTranIso = Set()
     setBcdConOtrIso = Set()      
     for k = 1:pmo  
-        bcd = IntgDig(k-1,m)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,m)           
         res = checkMinFromZE(bcd)        
         if res == true
             hvct = fromCodeZEtoBCode(bcd)           
@@ -63,27 +67,24 @@ function makeAllCodeFromZE(n::Int64)
 end 
 
 
-
-
 """
     genIsoCodeFromZE(n::Int64)
 
 Creates a complete list of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for isomers.
 
-This is done by sequentially generating edge codes, from which vertex codes are obtained 
-using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are selected using 
-the [`makeMinFromZE`](@ref) function.
+See also [`IntgDig`](@ref), [`makeMinFromZE`](@ref),  [`graphTypeFromZE`](@ref),
+[`fromCodeZEtoBCode`](@ref).
 
 Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` 
 in which every element is either `0` or `1`.
 """
 function genIsoCodeFromZE(n::Int64)
-    m = n - 3   #  m  - количество используемых ребер
+    m = n - 3   #  m - number of edges used
     pmo = 2^m
     setBcdIso = Set()          
     for k in 1:pmo  
-        bcd = IntgDig(k-1,m)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,m)           
         bcdMin = makeMinFromZE(bcd)        
         if bcd == bcdMin
             hvct = fromCodeZEtoBCode(bcd)           
@@ -105,19 +106,18 @@ end
 Creates a complete list of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for conformers of trans isomers.
 
-This is done by sequentially generating edge codes, from which vertex codes are obtained 
-using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are
-selected using the [`makeMinFromZE`](@ref) function.
+See also [`IntgDig`](@ref), [`makeMinFromZE`](@ref),  [`graphTypeFromZE`](@ref),
+[`fromCodeZEtoBCode`](@ref).
 
 Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` in 
 which every element is either `0` or `1`.
 """
 function genConTrnIsoCodeFromZE(n::Int64)
-    m = n - 3   #  m  - количество используемых ребер
+    m = n - 3   #  m - number of edges used
     pmo = 2^m
     setBcdConTranIso = Set()          
     for k = 1:pmo  
-        bcd = IntgDig(k-1,m)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,m)           
         bcdMin = makeMinFromZE(bcd)        
         if bcd == bcdMin
             hvct = fromCodeZEtoBCode(bcd)           
@@ -133,24 +133,23 @@ end
 
 
 """
-    genConOtrIsoCodeFromZEv2(n::Int64)
+    genConOtrIsoCodeFromZE(n::Int64)
 
 Creates a complete list of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for conformers of other isomers.
 
-This is done by sequentially generating edge codes, from which vertex codes are obtained 
-using the [`fromCodeZEtoBCode`](@ref) function. Edge codes for non-isomorphic graphs are
-selected using the [`makeMinFromZE`](@ref) function.
+See also [`IntgDig`](@ref), [`makeMinFromZE`](@ref),  [`graphTypeFromZE`](@ref),
+[`fromCodeZEtoBCode`](@ref).
      
 Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` in
 which every element is either `0` or `1`.
 """    
 function genConOtrIsoCodeFromZE(n::Int64)
-    m = n - 3   #  m  - количество используемых ребер
+    m = n - 3   #  m - number of edges used
     pmo = 2^m
     setBcdConOtrIso = Set()          
     for k = 1:pmo  
-        bcd = IntgDig(k-1,m)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,m)           
         bcdMin = makeMinFromZE(bcd)        
         if bcd == bcdMin
             hvct = fromCodeZEtoBCode(bcd)           
@@ -165,7 +164,14 @@ function genConOtrIsoCodeFromZE(n::Int64)
     return  lstBcdConOtrIso
 end 
 
-# Functions with source vertex code
+# Functions with source vertex code ==========================================
+
+#=
+All functions with source edge code use:
+- the `IntgDig`](@ref) function to generate the edge code of the molecular graph;
+- the [`makeMinFromBcd`](@ref) function to check the code for canonicity based on the edge code;
+- the [`graphTypeFromBcd`](@ref) function to determine the graph class based on its edge code.
+=#
 
 """
     makeAllCodeFromBcd(n::Int64)
@@ -173,9 +179,7 @@ end
 Creates a complete lists of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for isomers, conformers of trans isomers, and conformers of other isomers.
 
-The codes are created using the [`IntgDig function`](@ref). The codes are checked for 
-canonicity using the [`makeMinFromBcd`](@ref) function. Graph codes of a given class are 
-selected using the [`graphTypeFromBcd`](@ref) function.
+See also [`IntgDig`](@ref), [`makeMinFromBcd`](@ref), [`graphTypeFromBcd`](@ref).
 
 Returns    
 - `lstBcdIso::Vector{Vector{Int64}}`: A vector containing the vertex codes of the isomer 
@@ -188,13 +192,13 @@ the graphs of conformers of other isomers. Each code is a vector of integers (In
 where each element is either `0` or `1`.
 """
 function makeAllCodeFromBcd(n::Int64)
-    p = n-2   
+    p = n-2                        #   p is the number of vertices used
     pmo = 2^(p-1)
     setBcdIso = Set()
     setBcdConTI = Set()
     setBcdConBad = Set()      
     for k = 1:pmo  
-        bcd = IntgDig(k-1,p)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,p)         
         bcdMin = makeMinFromBcd(bcd)        
         if bcdMin == bcd            
             cls = graphTypeFromBcd(bcd)
@@ -220,19 +224,17 @@ end
 Creates a complete list of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for isomers.
 
-Code generation is performed using the [`IntgDig`](@ref) function. Codes are checked 
-for canonicity using the [`makeMinFromBcd`](@ref) function. Graph codes of a given 
-class are selected using the [`graphTypeFromBcd`](@ref) function.
+See also [`IntgDig`](@ref), [`makeMinFromBcd`](@ref), [`graphTypeFromBcd`](@ref).
    
 Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` 
 in which every element is either `0` or `1`. 
 """    
 function genIsoCodeFromBcd(n::Int64)
-    p = n - 2   #  m  - количество используемых ребер
+    p = n - 2              #   p is the number of vertices used
     pmo = 2^(p-1)
     setBcdIso = Set()          
     for k = 1:pmo  
-        bcd = IntgDig(k-1,p)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,p)           
         bcdMin = makeMinFromBcd(bcd)        
         if bcd == bcdMin                       
             cls = graphTypeFromBcd(bcd)
@@ -252,19 +254,17 @@ end
 Creates a complete list of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for conformers of trans isomers.
 
-Code generation is performed using the [`IntgDig`](@ref) function. Code canonicality is checked using 
-the [`makeMinFromBcd`](@ref) function. Graph codes of a given class are selected using 
-the [`graphTypeFromBcd`](@ref) function.
+See also [`IntgDig`](@ref), [`makeMinFromBcd`](@ref), [`graphTypeFromBcd`](@ref).
      
 Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` 
 in which every element is either `0` or `1`.
 """
 function genConTrnIsoCodeFromBcd(n::Int64)
-    p = n - 2   #  m  - количество используемых ребер
+    p = n - 2                    #   p is the number of vertices used
     pmo = 2^(p-1)
     setBcdConTranIso = Set()          
     for k = 1:pmo  
-        bcd = IntgDig(k-1,p)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,p)           
         bcdMin = makeMinFromBcd(bcd)        
         if bcd == bcdMin                       
             cls = graphTypeFromBcd(bcd)
@@ -283,19 +283,17 @@ end
 Creates a complete list of vertex codes for all non-isomorphic molecular graphs of 
 order `n` for conformers of other isomers.
 
-The codes are created using the [`IntgDig function`](@ref). The codes are checked for 
-canonicity using the [`makeMinFromBcd`](@ref) function. Graph codes of a given class are 
-selected using the [`graphTypeFromBcd`](@ref) function.
+See also [`IntgDig`](@ref), [`makeMinFromBcd`](@ref), [`graphTypeFromBcd`](@ref).
      
 Returns a vector of graph codes, where each code is a vector of type `vector(Int64)` 
 in which every element is either `0` or `1`.
 """
 function genConOtrIsoCodeFromBcd(n::Int64)
-    p = n - 2   #  m  - количество используемых ребер
+    p = n - 2                  #   p is the number of vertices used
     pmo = 2^(p-1)
     setBcdConOtrIso = Set()          
     for k = 1:pmo  
-        bcd = IntgDig(k-1,p)  # n изменяется фактически от 0 до pmo - 1        
+        bcd = IntgDig(k-1,p)          
         bcdMin = makeMinFromBcd(bcd)        
         if bcd == bcdMin                       
             cls = graphTypeFromBcd(bcd)

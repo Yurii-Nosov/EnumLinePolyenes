@@ -11,13 +11,13 @@ export makeAllCodeFromZEv2,genIsoCodeFromZEv2,genConTrnIsoCodeFromZEv2,genConOtr
 
 ##   Unlike the first version, here the `checkMinFromZE` function is used to select non-isomorphic graphs.
 
-"""
+#=
 All functions of the `GenCodeBasicIsoConfV2`` module use:
 - the `IntgDig`](@ref) function to create the edge code of a molecular graph;
 - the [`checkMinFromZE`](@ref) function to check the code for canonicity based on the edge code;
 - the [`graphTypeFromZE`](@ref) function to determine the graph class based on its edge code;
 - the [`fromCodeZEtoBCode`](@ref) function to obtain the vertex code of a graph from its edge code.
-"""    
+=#    
 
 """
     makeAllCodeFromZEv2(n::Int64)

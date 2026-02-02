@@ -1,6 +1,6 @@
 module EnumLinePolyenes
 
-__precompile__(true)
+
 
 include("allSmallParts.jl")
 include("countCodeIsoConf.jl")
@@ -53,13 +53,6 @@ export  makeAllCodeFromZE, makeAllCodeFromBcd, genIsoCodeFromZE, genConTrnIsoCod
 using .GenCodeBasicIsoConfV2: makeAllCodeFromZEv2,genIsoCodeFromZEv2,
     genConTrnIsoCodeFromZEv2,genConOtrIsoCodeFromZEv2 
 export makeAllCodeFromZEv2,genIsoCodeFromZEv2,genConTrnIsoCodeFromZEv2,genConOtrIsoCodeFromZEv2
-
-genCodePartCOIfromBcd, genCodePartCOIfromZE
-    genCodeCis4pFromZE, genCodeCis3fromZE, genCodeNonCis3fromZE
-export genCodePartCOIfromBcd, genCodePartCOIfromZE,
-    genCodeCis4pFromZE, genCodeCis3fromZE, genCodeNonCis3fromZE
-
-
 
 using .GenCodeSubGraphCOI: genCodePartCOIfromBcd, genCodePartCOIfromZE,
     genCodeCis4pFromZE, genCodeCis3fromZE, genCodeNonCis3fromZE
